@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail du commentaire
+{% endblock %}
+
+{% block body %}
+	<h2>
+		Commentaire du {{comment.dateCommentaire | date('d/m/y')}} par {{ comment.createur.pseudo }}
+	</h2>
+	<h3>
+		{{ comment.contenu }}
+	</h3>
+
+	<a class='button' href="{{path('app_post_detail', {id : comment.post.id})}}">Retour au post</a>
+{% endblock %}
