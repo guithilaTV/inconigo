@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('path/to/lightbox/css/lightbox.css') }}">
+<style>
+    .fixed-bottom-right {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col text-center">
+        <a class="btn btn-primary" href="{{ path('app_post', {offset : offset, byJaime : 0} )}}">
+            Afficher les posts les plus récents
+        </a>
+    </div>
+    <div class="col text-center">
+        <a class="btn btn-primary" href="{{ path('app_post', {offset : offset, byJaime : 1} )}}">
+            Afficher les posts les plus aimés
+        </a>
+    </div>
+</div>
+
+<div class="row">
+{% for post in posts %}
+    <div class="col-6 mt-5">
+        <div class="card m-2 h-100">
+            <div class="card-body">
+                <a href="{{ path('app_post_detail', { id : post.id}) }}" class="text-decoration-none">
+                    <h5 class="card-title text-dark">{{ post.createur.pseudo }}</h5>
+                    {% if post.imageName %}
+                        <a href="{{ asset('uploads/posts/' ~ post.imageName) }}" data-lightbox="post-images" data-title="{{ post.contenu }}">
+                            <img src="{{ asset('uploads/posts/' ~ post.imageName ) }}" width="90" alt="Image Post"></img> 
+                        </a>
+                    {% endif %}
+                    <p class="card-text text-dark">{{ post.contenu|u.truncate(80, '...') }} </p>
+                </a>
+                <a href="{{ path('app_post_like', { id : post.id}) }}" class="card-link bi bi-heart-fill">({{ post.jaime |length}})</a>
+            </div>
+            <div class="card-footer">
+                <p class="text-muted small">Post du {{ post.datePost | date('d/m/y') }} à {{ post.datePost|date('H:i') }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+</div>
+<div class="row mt-5 justify-content-center">
+    <div class="col text-center">
+        {% if previous >= 0 %}
+            <a class="btn btn-primary" href="{{ path('app_post', {offset : previous, byJaime : byJaime} )}}">Précédent</a>
+        {% else %}
+            <button class="btn btn-primary" disabled>Précédent</button>
+        {% endif %}
+    </div>
+    <div class="col text-center">
+        {% if next < posts|length %}
+            <a class="btn btn-primary" href="{{ path('app_post', {offset : next, byJaime : byJaime} )}}">Suivant</a>
+        {% else %}
+            <button class="btn btn-primary" disabled>Suivant</button>
+        {% endif %}
+    </div>
+</div>
+
+
+<a class="btn btn-primary fixed-bottom-right" href="{{ path('app_post_new') }}">Nouveau Post</a>
+
+</div>
+<footer class="bg-black text-center py-5 mt-5">
+    <div class="container px-5">
+        <div class="text-white-50 small">
+            <div class="mb-2">&copy; by <a href="https://www.facebook.com/profile.php?id=100009508478519" >Brochard Matisse</a>
+            <a href="https://www.linkedin.com/in/thibaud-laurency-52a53618a/">- Laurency Thibaut 
+            <a href="https://www.linkedin.com/in/lo%C3%AFc-pages/">- Pages Loïc</div>
+        </div>
+    </div>
+</footer>
+
+<script src="{{ asset('path/to/lightbox/js/lightbox.js') }}"></script>
+{% endblock %}
+

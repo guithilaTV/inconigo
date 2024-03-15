@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création d'un nouveau Post{% endblock %}
+
+{% block body %}
+    <div class="card mt-4">
+        <div class="card-body">
+            <h1 class="card-title">Lâche ton meilleur post </h1>
+            <div class="mt-4">
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

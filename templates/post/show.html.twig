@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post détaillé{% endblock %}
+
+{% block body %}
+<style>
+</style>
+    <h2> Contenu du post : {{ post.contenu | raw }} </h2>
+    <h2> Date du post : {{ post.datePost | date }} </h2>
+    <a class='button' href="{{path('app_post')}}"> Revenir au feed </a>
+
+    <h4> Liste des commentaires : </h4>
+    <ul>
+    {% for comment in post.commentaires %}
+        <li> {{ comment.contenu | raw }} </li>
+    {% endfor %}
+    <h4> Aimé par : </h4>
+    </ul>
+    <ul>
+    {% for jaime in post.jaime %}
+        <li> {{ jaime.pseudo }} </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
