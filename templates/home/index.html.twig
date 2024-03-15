@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {# Mettez le titre de votre page ici #}
+{% endblock %}
+
+{% block body %}
+<style> .custom-style {
+    margin-top: 75px !important; /* Ajustez la valeur de la marge selon vos besoins */
+}
+</style>
+<div class="row">
+    <div class='col-6 text-center mt-5 custom-style'>
+        <h1 class="text-center display-3">Le nouveau réseau social de MyDigitalSchool</h1>
+        <p class="mt-4">"Rejoins Inconigo, le réseau social où l'anonymat devient amitié ! Connecte-toi incognito et 
+		découvre une communauté bienveillante où se faire des potes n'a jamais été aussi fun."</p>
+        <br>
+        <div class="row">
+            <div class="col">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if not app.user %}
+                        <li class="nav-item btn btn-primary">
+                            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% if not app.user %}
+                        <li class="nav-item btn btn-success">
+                            <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class='col-6 text-center'>
+        <div class="content-wrapper">
+            <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+            </div>
+        </div>
+        <div>
+            <img src="/img/portrait_black.png" alt="Description de votre image" class="img-fluid" width="275">
+        </div>
+    </div>
+</div>
+</div>
+<footer class="bg-black text-center py-5 mt-5">
+    <div class="container px-5">
+        <div class="text-white-50 small">
+            <div class="mb-2">&copy; by <a href="https://www.facebook.com/profile.php?id=100009508478519" >Brochard Matisse</a>
+            <a href="https://www.linkedin.com/in/thibaud-laurency-52a53618a/">- Laurency Thibaut 
+            <a href="https://www.linkedin.com/in/lo%C3%AFc-pages/">- Pages Loïc</div>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
