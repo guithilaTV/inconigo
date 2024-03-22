@@ -1,59 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détail du post{% endblock %}
+{% block title %}Détail du post
+{% endblock %}
 
 {% block stylesheets %}
-{{ parent() }}
-<style>
-    .fixed-bottom-right {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-    }
-</style>
+	{{ parent() }}
+	<style>
+		.fixed-bottom-right {
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+		}
+	</style>
 {% endblock %}
 
 {% block body %}
-    <div class="card mt-4">
-    <div class="card-body">
-        <h2 class="card-title"> <span class="highlight">{{ post.createur.pseudo }}</span></h2>
-        <h3 class="card-text mt-4">{{ post.contenu }}</h3>
+	<div class="container">
+		<h1 class="text-white">ESPACE MARGIN TOP
+			<br>
+			ESPACE MARGIN TOP</h1>
+		<!-- Contenu vide pour simuler l'espace -->
+	</div>
+	<div class="card mt-4">
+		<div class="card-body">
+			<h2 class="card-title">
+				<span class="highlight">{{ post.createur.pseudo }}</span>
+			</h2>
+			<h3 class="card-text mt-4">{{ post.contenu }}</h3>
 
-        <p class="card-text mt-5">Aimé par :</p>
-        <ul>
-            {% for jaime in post.jaime %}
-                <li>{{ jaime.pseudo }}</li>
-            {% endfor %}
-        </ul>
+			<p class="card-text mt-5">Aimé par :</p>
+			<ul>
+				{% for jaime in post.jaime %}
+					<li>{{ jaime.pseudo }}</li>
+				{% endfor %}
+			</ul>
 
-        <p class="card-text">Liste des commentaires :</p>
-        <ul>
-            {% for comment in comments %}
-                <li>
-                    {{ comment.contenu | raw }}
-                    <a class="btn btn-primary" href="{{ path('app_comment_detail', {id: comment.id}) }}">Ouvrir</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="card-footer">
-<p class="text-muted small">Il a posté le {{ post.datePost|date('d/m/y') }} à {{ post.datePost|date('H:i') }}</p>
+			<p class="card-text">Liste des commentaires :</p>
+			<ul>
+				{% for comment in comments %}
+					<li>
+						{{ comment.contenu | raw }}
+						<a class="btn btn-primary" href="{{ path('app_comment_detail', {id: comment.id}) }}">Ouvrir</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="card-footer">
+			<p class="text-muted small">Il a posté le
+				{{ post.datePost|date('d/m/y') }}
+				à
+				{{ post.datePost|date('H:i') }}</p>
 
-    </div>
-</div>
-
-
-<style>
-    .highlight {
-        background-color: yellow;
-    }
-</style>
-
-    
-    <a class="btn btn-primary mt-3" href="{{ path('app_post') }}">Retour au feed</a>
-    <a class="btn btn-primary mt-3 text-center" href="{{ path('app_comment_new', {postId: post.id}) }}">Nouveau Commentaire</a>
-
-</div>
+		</div>
+	</div>
 
 
-{% endblock %}
+	<a class="btn btn-primary mt-3" href="{{ path('app_post') }}">Retour au feed</a>
+	<a class="btn btn-primary mt-3 text-center" href="{{ path('app_comment_new', {postId: post.id}) }}">Nouveau Commentaire</a>
+	<a class="btn btn-danger mt-3" href="{{ path('app_post') }}">SIGNALER</a>
+
+</div>{% endblock %}
