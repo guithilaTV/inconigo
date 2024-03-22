@@ -4,7 +4,6 @@
 
 {% block stylesheets %}
 {{ parent() }}
-<link rel="stylesheet" href="{{ asset('path/to/lightbox/css/lightbox.css') }}">
 <style>
     .fixed-bottom-right {
         position: fixed;
@@ -36,9 +35,7 @@
                 <a href="{{ path('app_post_detail', { id : post.id}) }}" class="text-decoration-none">
                     <h5 class="card-title text-dark">{{ post.createur.pseudo }}</h5>
                     {% if post.imageName %}
-                        <a href="{{ asset('uploads/posts/' ~ post.imageName) }}" data-lightbox="post-images" data-title="{{ post.contenu }}">
                             <img src="{{ asset('uploads/posts/' ~ post.imageName ) }}" width="90" alt="Image Post"></img> 
-                        </a>
                     {% endif %}
                     <p class="card-text text-dark">{{ post.contenu|u.truncate(80, '...') }} </p>
                 </a>
@@ -83,7 +80,5 @@
         </div>
     </div>
 </footer>
-
-<script src="{{ asset('path/to/lightbox/js/lightbox.js') }}"></script>
 {% endblock %}
 

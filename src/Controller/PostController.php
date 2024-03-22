@@ -58,7 +58,7 @@ class PostController extends AbstractController
             // so the PDF file must be processed only when a file is uploaded
 
             if ($imageFile) {
-                $newFilename = $post->getId() . '.' . $imageFile->guessExtension();
+                $newFilename = uniqid() . '.' . $imageFile->guessExtension();
 
                 // Move the file to the directory where brochures are stored
                 try {
